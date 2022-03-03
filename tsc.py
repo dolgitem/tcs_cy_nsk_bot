@@ -66,4 +66,4 @@ while True:
         else:
             print('Нет '+currency+' в банкаматах')
 
-    time.sleep(10)
+    time.sleep(300)
