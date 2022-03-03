@@ -3,6 +3,8 @@ import json
 import telebot
 import time
 
+import os
+TOKEN = os.environ.get('TOKEN', None)
 
 
 bot = telebot.TeleBot(TOKEN)
