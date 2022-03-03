@@ -6,19 +6,22 @@ import time
 import os
 TOKEN = os.environ.get('TOKEN', None)
 
+CHANNEL_NAME = '@Tcs_cy_nsk_bot'
 
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler(commands=['start', 'go'])
-def start_handler(message):
-    bot.send_message(message.chat.id, 'Буду присылать обновления каждые 5 минут!')
-bot.polling()
+# @bot.message_handler(commands=['start', 'go'])
+# def start_handler(message):
+    # bot.send_message(message.chat.id, 'Буду присылать обновления каждые 5 минут!')
+# bot.polling()
 
 url = 'https://api.tinkoff.ru/geo/withdraw/clusters'
 
 currencies = ['USD', 'EUR']
 
 while True:
+
+    response = ""
 
     for currency in currencies:
 
@@ -54,19 +57,23 @@ while True:
         response = request.json()
 
         if response['payload']['clusters']:
-            print('---' + currency + '---')
-            print('')
+            # print('---' + currency + '---')
+            # print('')
+            response += "---" + currency + "---\n\r"
+            response += "\n\r"
             for cluster in response['payload']['clusters']:
                 for point in cluster['points']:
                     
-                    print('Адрес: ' + point['address'])
+                    response += 'Адрес: ' + point['address'] + "\n\r"
 
                     for limit in point['limits']:
                         if currency == limit['currency']:
-                            print('Валюта: ' + limit['currency'])
-                            print('Доступно: ' + str(limit['amount']))
-                            print('')
+                            response +='Валюта: ' + limit['currency'] + "\n\r"
+                            response +='Доступно: ' + str(limit['amount']) + "\n\r"
+                            response += "\n\r"
         else:
-            print('Нет '+currency+' в банкаматах')
+            # print('Нет '+currency+' в банкаматах')
+
+    bot.send_message(CHANNEL_NAME, response)
 
     time.sleep(300)
