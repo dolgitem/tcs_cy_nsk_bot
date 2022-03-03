@@ -10,16 +10,17 @@ CHANNEL_NAME = '@Tcs_cy_nsk_bot'
 
 bot = telebot.TeleBot(TOKEN)
 
-# @bot.message_handler(commands=['start', 'go'])
-# def start_handler(message):
-    # bot.send_message(message.chat.id, 'Буду присылать обновления каждые 5 минут!')
-# bot.polling()
+@bot.message_handler(commands=['start', 'go'])
+def start_handler(message):
+    bot.send_message(message.chat.id, 'Буду присылать обновления каждые 5 минут!')
+bot.polling()
 
 url = 'https://api.tinkoff.ru/geo/withdraw/clusters'
 
 currencies = ['USD', 'EUR']
 
-while True:
+a = 1
+while a==1:
 
     response = ""
 
@@ -71,7 +72,7 @@ while True:
                             response +='Валюта: ' + limit['currency'] + "\n\r"
                             response +='Доступно: ' + str(limit['amount']) + "\n\r"
                             response += "\n\r"
-        else:
+        # else:
             # print('Нет '+currency+' в банкаматах')
 
     bot.send_message(CHANNEL_NAME, response)
