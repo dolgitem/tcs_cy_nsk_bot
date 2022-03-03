@@ -3,6 +3,8 @@ import json
 import telebot
 import time
 
+
+
 bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'go'])

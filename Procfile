@@ -1,1 +1,1 @@
-bot: python3 tcs.py
+bot: python3 tsc.py
