@@ -21,8 +21,9 @@ currencies = ['USD', 'EUR', 'RUB']
 
 a = 1
 while a==1:
+# if True:
 
-    response = ""
+    bot_response = ""
 
     for currency in currencies:
 
@@ -58,23 +59,23 @@ while a==1:
         response = request.json()
 
         if response['payload']['clusters']:
-            # print('---' + currency + '---')
-            # print('')
-            response += "---" + currency + "---\n\r"
-            response += "\n\r"
+            
+            bot_response += "---" + str(currency) + "---\n\r"
+            bot_response += "\n\r"
             for cluster in response['payload']['clusters']:
                 for point in cluster['points']:
                     
-                    response += 'Адрес: ' + point['address'] + "\n\r"
+                    bot_response += 'Адрес: ' + point['address'] + "\n\r"
 
                     for limit in point['limits']:
                         if currency == limit['currency']:
-                            response +='Валюта: ' + limit['currency'] + "\n\r"
-                            response +='Доступно: ' + str(limit['amount']) + "\n\r"
-                            response += "\n\r"
+                            bot_response +='Валюта: ' + limit['currency'] + "\n\r"
+                            bot_response +='Доступно: ' + str(limit['amount']) + "\n\r"
+                            bot_response += "\n\r"
         # else:
             # print('Нет '+currency+' в банкаматах')
 
-    bot.send_message(CHANNEL_NAME, response)
+    bot.send_message(CHANNEL_NAME, bot_response)
+    # print(bot_response)
 
     time.sleep(300)
