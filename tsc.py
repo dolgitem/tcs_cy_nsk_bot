@@ -6,18 +6,18 @@ import time
 import os
 TOKEN = os.environ.get('TOKEN', None)
 
-CHANNEL_NAME = '@Tcs_cy_nsk_bot'
+CHANNEL_NAME = '@tcs_piter_cash'
 
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler(commands=['start', 'go'])
-def start_handler(message):
-    bot.send_message(message.chat.id, 'Буду присылать обновления каждые 5 минут!')
-bot.polling()
+# @bot.message_handler(commands=['start', 'go'])
+# def start_handler(message):
+#     bot.send_message(message.chat.id, 'Буду присылать обновления каждые 5 минут!')
+# bot.polling()
 
 url = 'https://api.tinkoff.ru/geo/withdraw/clusters'
 
-currencies = ['USD', 'EUR']
+currencies = ['USD', 'EUR', 'RUB']
 
 a = 1
 while a==1:
