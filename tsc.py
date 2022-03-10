@@ -17,7 +17,7 @@ bot = telebot.TeleBot(TOKEN)
 
 url = 'https://api.tinkoff.ru/geo/withdraw/clusters'
 
-currencies = ['USD', 'EUR', 'RUB']
+currencies = ['USD', 'EUR']
 
 a = 1
 while a==1:
@@ -37,17 +37,32 @@ while a==1:
                     'tcs'
                 ]
             },
+
+            # ПИТЕР
             'bounds': {
                 'bottomLeft': {
-                    'lat': 54.73908113092194,
-                    'lng': 81.42070414453119
+                    'lat': 59.81865851138632,
+                    'lng': 30.24542629127309
                 },
                 'topRight': {
-                    'lat': 55.263240661317916,
-                    'lng': 84.49138285546871
+                    'lat': 59.88679579775586,
+                    'lng': 30.39322673682974
                 }
             },
-            'zoom': 9
+            'zoom': 13
+
+            # НСК
+            # 'bounds': {
+            #     'bottomLeft': {
+            #         'lat': 54.73908113092194,
+            #         'lng': 81.42070414453119
+            #     },
+            #     'topRight': {
+            #         'lat': 55.263240661317916,
+            #         'lng': 84.49138285546871
+            #     }
+            # },
+            # 'zoom': 9
         }
 
         params_json = json.dumps(params)
